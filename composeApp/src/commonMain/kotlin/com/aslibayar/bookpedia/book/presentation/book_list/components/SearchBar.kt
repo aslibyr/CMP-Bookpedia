@@ -24,8 +24,8 @@ import androidx.compose.ui.text.input.ImeAction
 import cmp_bookpedia.composeapp.generated.resources.Res
 import cmp_bookpedia.composeapp.generated.resources.close_hint
 import cmp_bookpedia.composeapp.generated.resources.search_hint
-import com.aslibayar.bookpedia.core.presentation.DarkBlue
 import com.aslibayar.bookpedia.core.presentation.DesertWhite
+import com.aslibayar.bookpedia.core.presentation.Purple
 import com.aslibayar.bookpedia.core.presentation.SandYellow
 import org.jetbrains.compose.resources.stringResource
 
@@ -64,7 +64,7 @@ fun SearchBar(
             shape = RoundedCornerShape(100),
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = SandYellow,
-                cursorColor = DarkBlue
+                cursorColor = Purple
             ),
             leadingIcon = {
                 Icon(
