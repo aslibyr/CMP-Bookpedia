@@ -4,7 +4,7 @@
     <string name="search_results">Search Results</string>
     <string name="no_search_results">Oops, there are no results for your search.</string>
     <string name="favorites">Favorites</string>
-    <string name="no_favorites">There are no favorites</string>
+    <string name="no_favorites">There are no favorites yet</string>
     <string name="close_hint">Clear search</string>
     <string name="no_results">No results found</string>
     <string name="loading">Loading...</string>
