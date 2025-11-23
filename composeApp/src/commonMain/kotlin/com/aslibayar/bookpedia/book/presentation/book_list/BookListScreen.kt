@@ -171,9 +171,9 @@ fun BookListScreen(
                                     CircularProgressIndicator()
                                 } else {
                                     when {
-                                        state.errorText != null -> {
+                                        state.errorMessage != null -> {
                                             Text(
-                                                text = state.errorText.asString(),
+                                                text = state.errorMessage.asString(),
                                                 textAlign = TextAlign.Center,
                                                 style = MaterialTheme.typography.headlineSmall,
                                                 color = MaterialTheme.colorScheme.error,

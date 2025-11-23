@@ -12,7 +12,7 @@ data class SearchedBookDto(
     @SerialName("language")
     val language: List<String>? = null,
     @SerialName("cover_i")
-    val coverAlternativeKey: Int?,
+    val coverAlternativeKey: Int? = null,
     @SerialName("author_key")
     val authorKeys: List<String>? = null,
     @SerialName("author_name")
@@ -20,7 +20,7 @@ data class SearchedBookDto(
     @SerialName("cover_edition_key")
     val coverKey: String? = null,
     @SerialName("first_publish_year")
-    val firstPublishYear: String? = null,
+    val firstPublishYear: Int? = null,
     @SerialName("rating_counts")
     val ratingCounts: Int? = null,
     @SerialName("rating_average")

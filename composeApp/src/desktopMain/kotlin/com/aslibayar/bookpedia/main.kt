@@ -8,6 +8,6 @@ fun main() = application {
         onCloseRequest = ::exitApplication,
         title = "CMP-Bookpedia",
     ) {
-        App()
+        App(engine = io.ktor.client.engine.okhttp.OkHttp.create())
     }
 }
