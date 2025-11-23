@@ -1,6 +1,6 @@
 package com.aslibayar.bookpedia.book.data.network
 
-import com.aslibayar.bookpedia.book.domain.Book
+import com.aslibayar.bookpedia.book.data.dto.SearchResponseDto
 import com.aslibayar.bookpedia.core.data.safeCall
 import com.aslibayar.bookpedia.core.domain.DataError
 import com.aslibayar.bookpedia.core.domain.Result
@@ -10,11 +10,11 @@ import io.ktor.client.request.parameter
 
 private const val BASE_URL = "https://openlibrary.org"
 
-class KtorRemoteBookDataSource(private val httpClient: HttpClient) {
-    suspend fun searchBooks(
+class KtorRemoteBookDataSource(private val httpClient: HttpClient) : RemoteBookDataSource {
+    override suspend fun searchBooks(
         query: String,
-        resultLimit: Int? = null
-    ): Result<List<Book>, DataError.Remote> {
+        resultLimit: Int?
+    ): Result<SearchResponseDto, DataError.Remote> {
         return safeCall {
             httpClient.get(
                 urlString =
