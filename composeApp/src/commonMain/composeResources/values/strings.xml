@@ -10,4 +10,14 @@
     <string name="loading">Loading...</string>
     <string name="error_message">An error occurred. Please try again.</string>
     <string name="retry">Retry</string>
+
+    <!-- DataError strings -->
+    <string name="error_request_timeout">Request timed out</string>
+    <string name="error_too_many_requests">Too many requests</string>
+    <string name="error_server_error">Server error</string>
+    <string name="error_no_internet">No internet connection</string>
+    <string name="error_server">Server error</string>
+    <string name="error_serialization">Data processing error</string>
+    <string name="error_unknown">Unknown error</string>
+    <string name="error_disk_full">Storage full</string>
 </resources>
