@@ -7,6 +7,7 @@ import com.aslibayar.bookpedia.book.domain.BookRepository
 import com.aslibayar.bookpedia.core.domain.onError
 import com.aslibayar.bookpedia.core.domain.onSuccess
 import com.aslibayar.bookpedia.core.presentation.toUIText
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -55,25 +56,29 @@ class BookListViewModel(private val bookRepository: BookRepository) : ViewModel(
         }
     }
 
+    @OptIn(FlowPreview::class)
     private fun observeSearchQuery() {
-        state.map { it.searchQuery }.distinctUntilChanged().debounce(500L).onEach { query ->
-            when {
-                query.isBlank() -> {
-                    _state.update {
-                        it.copy(
-                            errorMessage = null,
-                            isLoading = false,
-                            searchResults = cachedBooks
-                        )
+        state.map { it.searchQuery }
+            .distinctUntilChanged()
+            .debounce(500L)
+            .onEach { query ->
+                when {
+                    query.isBlank() -> {
+                        _state.update {
+                            it.copy(
+                                errorMessage = null,
+                                isLoading = false,
+                                searchResults = cachedBooks
+                            )
+                        }
+                    }
+
+                    query.length >= 2 -> {
+                        searchJob?.cancel()
+                        searchJob = searchBooks(query)
                     }
                 }
-
-                query.length >= 2 -> {
-                    searchJob?.cancel()
-                    searchJob = searchBooks(query)
-                }
             }
-        }
             .launchIn(viewModelScope)
     }
 
