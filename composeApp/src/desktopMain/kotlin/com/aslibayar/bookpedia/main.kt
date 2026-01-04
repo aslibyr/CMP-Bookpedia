@@ -2,6 +2,7 @@ package com.aslibayar.bookpedia
 
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import com.aslibayar.bookpedia.app.App
 import com.aslibayar.bookpedia.di.initKoin
 
 fun main() {

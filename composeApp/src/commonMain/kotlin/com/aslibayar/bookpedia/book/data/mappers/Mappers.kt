@@ -17,7 +17,7 @@ fun SearchedBookDto.toBook(): Book {
             .ifEmpty { buildOpenLibraryCoverUrl(coverAlternativeKey?.toString()) }
 
     return Book(
-        id = id,
+        id = id.substringAfterLast("/"),
         title = title,
         imageUrl = resolvedImageUrl,
         authors = authorNames ?: emptyList(),
