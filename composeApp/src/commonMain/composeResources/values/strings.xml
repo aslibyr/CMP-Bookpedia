@@ -10,6 +10,15 @@
     <string name="loading">Loading...</string>
     <string name="error_message">An error occurred. Please try again.</string>
     <string name="retry">Retry</string>
+    <string name="book_cover">Book Cover</string>
+    <string name="rating">Rating</string>
+    <string name="pages">Pages</string>
+    <string name="languages">Languages</string>
+    <string name="synopsis">Synopsis</string>
+    <string name="description_unavailable">Description not available</string>
+    <string name="back">Go back</string>
+    <string name="mark_as_fav">Mark as favorite</string>
+    <string name="remove_from_fav">Remove from favorites</string>
 
     <!-- DataError strings -->
     <string name="error_request_timeout">Request timed out</string>
