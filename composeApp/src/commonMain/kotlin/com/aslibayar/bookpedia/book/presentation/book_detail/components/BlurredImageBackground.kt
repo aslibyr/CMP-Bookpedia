@@ -12,8 +12,9 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -42,10 +43,10 @@ import cmp_bookpedia.composeapp.generated.resources.book_error_2
 import cmp_bookpedia.composeapp.generated.resources.mark_as_fav
 import coil3.compose.rememberAsyncImagePainter
 import com.aslibayar.bookpedia.core.presentation.DesertWhite
+import com.aslibayar.bookpedia.core.presentation.PulseAnimation
 import com.aslibayar.bookpedia.core.presentation.Purple
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.resources.vectorResource
 
 @Composable
 fun BlurredImageBackground(
@@ -73,8 +74,7 @@ fun BlurredImageBackground(
     Box(modifier = modifier) {
         Column(modifier = modifier.fillMaxSize()) {
             Box(
-                modifier = Modifier
-                    .weight(0.3f)
+                modifier = Modifier.weight(0.3f)
                     .fillMaxWidth()
                     .background(Purple)
             ) {
@@ -83,25 +83,21 @@ fun BlurredImageBackground(
                         painter = painter,
                         contentDescription = stringResource(Res.string.book_cover),
                         contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .fillMaxSize()
+                        modifier = Modifier.fillMaxSize()
                             .blur(20.dp)
 
                     )
                 }
             }
             Box(
-                modifier = Modifier
-                    .weight(0.7f)
+                modifier = Modifier.weight(0.7f)
                     .fillMaxWidth()
                     .background(DesertWhite)
             )
         }
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             IconButton(
-                onClick = onBackClick,
-                modifier = Modifier
-                    .padding(top = 16.dp, start = 16.dp)
+                onClick = onBackClick, modifier = Modifier.padding(top = 16.dp, start = 16.dp)
             ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
@@ -110,9 +106,7 @@ fun BlurredImageBackground(
                 )
             }
             IconButton(
-                onClick = onFavoriteClick,
-                modifier = Modifier
-                    .padding(top = 16.dp, end = 16.dp)
+                onClick = onFavoriteClick, modifier = Modifier.padding(top = 16.dp, end = 16.dp)
             ) {
                 Icon(
                     imageVector = if (isFavorite) {
@@ -126,30 +120,24 @@ fun BlurredImageBackground(
             }
         }
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxWidth()
+            horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()
         ) {
             Spacer(modifier = Modifier.fillMaxHeight(0.15f))
             ElevatedCard(
-                modifier = Modifier.width(200.dp).aspectRatio(2 / 3f),
+                modifier = Modifier.height(270.dp)
+                    .aspectRatio(2 / 3f),
                 shape = RoundedCornerShape(8.dp),
                 colors = CardDefaults.elevatedCardColors(containerColor = Color.Transparent),
                 elevation = CardDefaults.elevatedCardElevation(defaultElevation = 15.dp)
             ) {
                 AnimatedContent(targetState = imageLoadResult) { result ->
                     when (result) {
-                        null -> {
-                            // Show a placeholder while loading
-                            Box(
-                                modifier = Modifier.fillMaxSize(),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Icon(
-                                    imageVector = vectorResource(Res.drawable.book_error_2),
-                                    contentDescription = stringResource(Res.string.book_cover),
-                                    tint = DesertWhite
-                                )
-                            }
+                        null -> Box(
+                            modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
+                        ) {
+                            PulseAnimation(
+                                modifier = Modifier.size(60.dp)
+                            )
                         }
 
                         else -> {
