@@ -32,6 +32,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
@@ -43,6 +44,7 @@ import cmp_bookpedia.composeapp.generated.resources.book_error_2
 import cmp_bookpedia.composeapp.generated.resources.mark_as_fav
 import coil3.compose.rememberAsyncImagePainter
 import com.aslibayar.bookpedia.core.presentation.DesertWhite
+import com.aslibayar.bookpedia.core.presentation.Lilac
 import com.aslibayar.bookpedia.core.presentation.PulseAnimation
 import com.aslibayar.bookpedia.core.presentation.Purple
 import org.jetbrains.compose.resources.painterResource
@@ -76,18 +78,26 @@ fun BlurredImageBackground(
             Box(
                 modifier = Modifier.weight(0.3f)
                     .fillMaxWidth()
-                    .background(Purple)
-            ) {
-                imageLoadResult?.getOrNull()?.let { painter ->
-                    Image(
-                        painter = painter,
-                        contentDescription = stringResource(Res.string.book_cover),
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier.fillMaxSize()
-                            .blur(20.dp)
-
+                    .background(
+                        Brush.linearGradient(
+                            colors = listOf(
+                                Purple,
+                                Lilac
+                            ),
+                        )
                     )
-                }
+            ) {
+                imageLoadResult?.getOrNull()
+                    ?.let { painter ->
+                        Image(
+                            painter = painter,
+                            contentDescription = stringResource(Res.string.book_cover),
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                                .blur(20.dp)
+
+                        )
+                    }
             }
             Box(
                 modifier = Modifier.weight(0.7f)
@@ -127,7 +137,7 @@ fun BlurredImageBackground(
                 modifier = Modifier.height(270.dp)
                     .aspectRatio(2 / 3f),
                 shape = RoundedCornerShape(8.dp),
-                colors = CardDefaults.elevatedCardColors(containerColor = Color.Transparent),
+                colors = CardDefaults.elevatedCardColors(containerColor = Color.White),
                 elevation = CardDefaults.elevatedCardElevation(defaultElevation = 15.dp)
             ) {
                 AnimatedContent(targetState = imageLoadResult) { result ->
@@ -146,7 +156,8 @@ fun BlurredImageBackground(
                                     painterResource(Res.drawable.book_error_2)
                                 },
                                 contentDescription = stringResource(Res.string.book_cover),
-                                modifier = Modifier.fillMaxSize().background(Color.Transparent),
+                                modifier = Modifier.fillMaxSize()
+                                    .background(Color.Transparent),
                                 contentScale = if (result.isSuccess) {
                                     ContentScale.Crop
                                 } else {

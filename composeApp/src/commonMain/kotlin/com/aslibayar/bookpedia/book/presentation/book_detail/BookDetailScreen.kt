@@ -1,6 +1,7 @@
 package com.aslibayar.bookpedia.book.presentation.book_detail
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -15,7 +16,7 @@ fun BookDetailScreenRoot(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    BookdetailScreen(
+    BookDetailScreen(
         state = state,
         onAction = { action ->
             when (action) {
@@ -28,7 +29,7 @@ fun BookDetailScreenRoot(
 }
 
 @Composable
-private fun BookdetailScreen(
+private fun BookDetailScreen(
     state: BookDetailState,
     onAction: (BookDetailAction) -> Unit,
     modifier: Modifier = Modifier
@@ -40,6 +41,7 @@ private fun BookdetailScreen(
         onBackClick = { onAction(BookDetailAction.OnBackClick) },
         modifier = modifier.fillMaxSize()
     ) {
+        Text("Book Detail Screen")
 
     }
 }

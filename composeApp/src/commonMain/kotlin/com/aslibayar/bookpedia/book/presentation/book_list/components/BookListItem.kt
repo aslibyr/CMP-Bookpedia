@@ -24,10 +24,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import cmp_bookpedia.composeapp.generated.resources.Res
+import cmp_bookpedia.composeapp.generated.resources.book_error_2
 import coil3.compose.AsyncImage
 import com.aslibayar.bookpedia.book.domain.Book
 import com.aslibayar.bookpedia.core.presentation.Lilac
 import com.aslibayar.bookpedia.core.presentation.SandYellow
+import org.jetbrains.compose.resources.painterResource
 import kotlin.math.round
 
 @Composable
@@ -53,6 +56,8 @@ fun BookListItem(
                     .height(100.dp)
                     .width(70.dp)
                     .clip(RoundedCornerShape(6.dp)),
+                placeholder = painterResource(Res.drawable.book_error_2),
+                error = painterResource(Res.drawable.book_error_2)
             )
             Column(
                 modifier = Modifier
@@ -100,7 +105,8 @@ fun BookListItem(
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
                 contentDescription = null,
-                modifier = Modifier.align(Alignment.CenterVertically).size(32.dp)
+                modifier = Modifier.align(Alignment.CenterVertically)
+                    .size(32.dp)
             )
         }
     }

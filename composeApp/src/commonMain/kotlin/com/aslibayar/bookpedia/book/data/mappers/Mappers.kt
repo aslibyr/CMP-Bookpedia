@@ -18,7 +18,7 @@ fun SearchedBookDto.toBook(): Book {
     val resolvedImageUrl = sequenceOf(
         buildOpenLibraryCoverUrl(coverKey),
         buildOpenLibraryCoverUrl(coverAlternativeKey?.toString())
-    ).firstOrNull() ?: ""
+    ).firstOrNull()
 
     return Book(
         id = id.substringAfterLast("/", id),
